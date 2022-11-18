@@ -1,0 +1,36 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocation
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+// This is where the magic happens
+shadowJar {
+    relocate "io.neow3j", "io.neow3j.legacy"
+}
+
+dependencies {
+    // Last version of the neow3j targeting Neo Legacy
+    implementation 'io.neow3j:core:2.4.0'
+}
+
+// Configure Auto Relocation
+// This is required due to old transitive dependencies
+task relocateShadowJar(type: ConfigureShadowRelocation) {
+    target = tasks.shadowJar
+    prefix = "neolegacy" // Default value is "shadow"
+
+}
+
+tasks.shadowJar.dependsOn tasks.relocateShadowJar
