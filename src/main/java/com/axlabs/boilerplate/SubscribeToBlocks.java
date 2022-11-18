@@ -16,13 +16,14 @@ public class SubscribeToBlocks {
         neow3j.subscribeToNewBlocksObservable(true)
                 .subscribe((blockReqResult) -> {
                     System.out.println("#######################################");
+                    System.out.println("# Neo N3 block:");
+                    System.out.println("#######################################");
                     System.out.println("Block Index:     " + blockReqResult.getBlock().getIndex());
                     System.out.println("Block Hash:      " + blockReqResult.getBlock().getHash());
                     System.out.println("Prev Block Hash: " + blockReqResult.getBlock().getPrevBlockHash());
                     System.out.println("Next Consensus:  " + blockReqResult.getBlock().getNextConsensus());
-                    System.out.println("Transactions:    " + blockReqResult.getBlock().getTransactions());
+                    System.out.println("Transactions:    " + blockReqResult.getBlock().getTransactions().size());
                 });
-
 
         // Initialize Neow3j to connect to a Neo Legacy node.
         io.neow3j.legacy.protocol.Neow3j neow3jLegacy =
@@ -33,10 +34,12 @@ public class SubscribeToBlocks {
         neow3jLegacy.catchUpToLatestAndSubscribeToNewBlocksObservable(io.neow3j.legacy.protocol.core.BlockParameterName.LATEST, true)
             .subscribe((blockReqResult) -> {
                 System.out.println("#######################################");
-                System.out.println("blockIndex: " + blockReqResult.getBlock().getIndex());
-                System.out.println("hashId: " + blockReqResult.getBlock().getHash());
-                System.out.println("confirmations: " + blockReqResult.getBlock().getConfirmations());
-                System.out.println("transactions: " + blockReqResult.getBlock().getTransactions());
+                System.out.println("# Neo Legacy block:");
+                System.out.println("#######################################");
+                System.out.println("Block Index:    " + blockReqResult.getBlock().getIndex());
+                System.out.println("Block Hash:     " + blockReqResult.getBlock().getHash());
+                System.out.println("Confirmations:  " + blockReqResult.getBlock().getConfirmations());
+                System.out.println("Transactions:   " + blockReqResult.getBlock().getTransactions().size());
             });
     }
 

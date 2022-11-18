@@ -1,51 +1,22 @@
-# neow3j-boilerplate-sdk
+# neow3j-both-legacy-neo3
 
-This is a boilerplate project setup for Java dApps. It brings the minimum amount of code
-to build, sign and send a transaction and to track new blocks on the Neo N3 blockchain.
+This is a boilerplate project setup to show that different versions of neow3j can co-exist
+in the same project.
+
+It's particularly useful for using neow3j targeting Neo Legacy and Neo N3 networks in
+the same application.
 
 ## Quickstart
 
-[Java 8](https://adoptium.net/) (or higher) is required.  
+The example can be found in the dir `./src/main/java/com/axlabs/boilerplate/`.
 
-#### 1. **Clone this git repo:**
+The class `SubscribeToBlocks` basically monitors for new blocks on the Neo Legacy and also in the
+Neo N3 chains. For each block, it displays the information.
 
-```bash
-git clone https://github.com/neow3j/neow3j-boilerplate-sdk.git
+To run the example, simply execute:
+
+```
+./gradlew clean run
 ```
 
-#### 2. **Go to the project directory:**
-
-```bash
-cd neow3j-boilerplate-sdk
-```
-
-#### 3. **Build the project**
-
-```bash
-./gradlew build
-```
-
-#### 4. **Execute examples**
-
-The provided endpoints in the examples connect to a testnet Neo node. If you want to run a local Neo
-network, we recommend using  [*Virtual Studio Code*](https://code.visualstudio.com/) (VSCode) for trying
-these examples. You can then make use of the [*Neo Blockchain
-Toolkit*](https://marketplace.visualstudio.com/items?itemName=ngd-seattle.neo-blockchain-toolkit)
-which gives you the best developer experience with Neo. Checkout their [Quickstart
-Guide](https://ngdenterprise.com/neo-tutorials/quickstart1.html) for how
-to set it up. 
-
-You can then execute the examples, e.g., via the `Run` buttons above the `main` methods.
-
-#### 5. **Give us a GitHub star! :star::star::star:**
-
-## About
-
-Neow3j is a Java SDK and smart contract devpack that provides easy and reliable tools to build Neo
-dApps and Smart Contracts using the Java platform (Java, Kotlin, Android).
-
-Check out [neow3j.io](https://neow3j.io) for more information on neow3j and the technical
-documentation.
-
-Neow3j is an open-source project developed by the community and maintained by
-[AxLabs](https://axlabs.com).
+You will see lots of information being displayed for each new block.
